@@ -58,7 +58,7 @@
 | sales_info    | references | null: false, foreign_key: true |
 
 ### Association
-- belongs_to :delivery_info
+- belongs_to :sales_info
 
 ## 備考
 以下のカラムはActiveHashを用いて実装する
