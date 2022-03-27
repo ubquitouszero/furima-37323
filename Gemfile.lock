@@ -93,6 +93,7 @@ GEM
       railties (>= 5.0.0)
     faker (2.19.0)
       i18n (>= 1.6, < 2)
+    faker-japanese (0.0.1)
     ffi (1.15.5)
     gimei (1.0.1)
       romaji
@@ -283,6 +284,7 @@ DEPENDENCIES
   devise
   factory_bot_rails
   faker
+  faker-japanese
   gimei
   image_processing (~> 1.2)
   jbuilder (~> 2.7)
