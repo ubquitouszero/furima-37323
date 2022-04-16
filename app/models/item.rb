@@ -13,9 +13,7 @@ class Item < ApplicationRecord
   validates :prefecture_id, presence: { message: "は入力必須項目です。" }
   validates :delivery_schedule_id, presence: { message: "は入力必須項目です。" }
   validates :image, presence: { message: "は添付必須項目です。" }
-  with_options format: { with: /\A[0-9]+\z/ } do
-    validates_inclusion_of :price, in:300..9999999, message: "は半角数字で、¥300~¥9,999,999の範囲で入力してください", presence: true
-  end
+  validates :price, presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_000_000, message: "は半角数字で、¥300~¥9,999,999の範囲で入力してください"}
 
   #ジャンルの選択が「--」の時は保存できないようにする
   validates :category_id, numericality: { other_than: 0 , message: "は入力必須項目です。"}

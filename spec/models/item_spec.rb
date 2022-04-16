@@ -97,6 +97,11 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Price は半角数字で、¥300~¥9,999,999の範囲で入力してください")
       end
+      it 'priceは、小数値では保存できない' do
+        @item.price = "300.5"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price は半角数字で、¥300~¥9,999,999の範囲で入力してください")
+      end
       it 'ユーザー情報がない場合は登録できないこと' do
         @item.user = nil
         @item.valid?
