@@ -3,18 +3,11 @@ require 'rails_helper'
 RSpec.describe Item, type: :model do
   before do
     @item = FactoryBot.build(:item)
-    @item.image = fixture_file_upload('/Users/tc-user/Desktop/カレンダー.jpg')
-
   end
 
   describe '新規商品の出品' do
     context '商品出品できるとき' do
       it 'name、info、category_id、sales_status_id、fee_status_id、prefecture_id、delivery_schedule_id、priceが存在すれば登録できる' do
-        @item.category_id = "1"
-        @item.sales_status_id = "1"
-        @item.fee_status_id = "1"
-        @item.prefecture_id = "1"
-        @item.delivery_schedule_id = "1"
         expect(@item).to be_valid
       end
     end
