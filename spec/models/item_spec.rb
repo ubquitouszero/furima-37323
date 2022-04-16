@@ -34,8 +34,18 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Category は入力必須項目です。")
       end
+      it 'カテゴリーに「---」が選択されている場合は出品できない' do
+        @item.category_id = "0"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Category は入力必須項目です。")
+      end
       it 'sales_status_idが空では登録できない' do
         @item.sales_status_id = ""
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Sales status は入力必須項目です。")
+      end
+      it '商品の状態に「---」が選択されている場合は出品できない' do
+        @item.sales_status_id = "0"
         @item.valid?
         expect(@item.errors.full_messages).to include("Sales status は入力必須項目です。")
       end
@@ -44,13 +54,28 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Fee status は入力必須項目です。")
       end
+      it '配送料の負担に「---」が選択されている場合は出品できない' do
+        @item.fee_status_id = "0"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Fee status は入力必須項目です。")
+      end
       it 'prefecture_idが空では登録できない' do
         @item.prefecture_id = ""
         @item.valid?
         expect(@item.errors.full_messages).to include("Prefecture は入力必須項目です。")
       end
+      it '発送元の地域に「---」が選択されている場合は出品できない' do
+        @item.prefecture_id = "0"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Prefecture は入力必須項目です。")
+      end
       it 'delivery_schedule_idが空では登録できない' do
         @item.delivery_schedule_id = ""
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Delivery schedule は入力必須項目です。")
+      end
+      it '発送までの日数に「---」が選択されている場合は出品できない' do
+        @item.delivery_schedule_id = "0"
         @item.valid?
         expect(@item.errors.full_messages).to include("Delivery schedule は入力必須項目です。")
       end
