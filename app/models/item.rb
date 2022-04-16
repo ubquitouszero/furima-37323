@@ -18,11 +18,11 @@ class Item < ApplicationRecord
   end
 
   #ジャンルの選択が「--」の時は保存できないようにする
-  # validates :category_id, numericality: { other_than: 1 , message: "は入力必須項目です。"}
-  # validates :sales_status_id, numericality: { other_than: 1 , message: "は入力必須項目です。"}
-  # validates :fee_status_id, numericality: { other_than: 1 , message: "は入力必須項目です。"}
-  # validates :prefecture_id, numericality: { other_than: 1 , message: "は入力必須項目です。"}
-  # validates :delivery_schedule_id, numericality: { other_than: 1 , message: "は入力必須項目です。"}
+  validates :category_id, numericality: { other_than: 0 , message: "は入力必須項目です。"}
+  validates :sales_status_id, numericality: { other_than: 0 , message: "は入力必須項目です。"}
+  validates :fee_status_id, numericality: { other_than: 0 , message: "は入力必須項目です。"}
+  validates :prefecture_id, numericality: { other_than: 0 , message: "は入力必須項目です。"}
+  validates :delivery_schedule_id, numericality: { other_than: 0 , message: "は入力必須項目です。"}
   
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
@@ -30,5 +30,5 @@ class Item < ApplicationRecord
   belongs_to :fee_status
   belongs_to :prefecture
   belongs_to :delivery_schedule
-  
+
 end
