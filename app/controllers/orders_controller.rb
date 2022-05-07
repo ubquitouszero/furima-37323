@@ -8,7 +8,7 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order= Order.new(order_params)
+    @order = Order.new(order_params)
     if @order.valid?
       pay_item
       @order.save
@@ -25,23 +25,22 @@ class OrdersController < ApplicationController
   end
 
   def order_params
-    params.require(:order).permit(:postal_code, :prefecture_id, :city, :addresses, :building, :phone_number, :item_id).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
+    params.require(:order).permit(:postal_code, :prefecture_id, :city, :addresses, :building, :phone_number, :item_id).merge(
+      user_id: current_user.id, item_id: params[:item_id], token: params[:token]
+    )
   end
 
   def pay_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]    # PAY.JPテスト秘密鍵
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']    # PAY.JPテスト秘密鍵
     Payjp::Charge.create(
-      amount: @item.price,  # 商品の値段
-      card: order_params[:token],    # カードトークン
+      amount: @item.price, # 商品の値段
+      card: order_params[:token], # カードトークン
       currency: 'jpy'                 # 通貨の種類（日本円）
     )
   end
 
   def check_item_status
     item_status = SalesInfo.find_by(item_id: params[:item_id])
-    if item_status != nil || current_user.id == @item.user_id
-      redirect_to root_path
-    end
+    redirect_to root_path if !item_status.nil? || current_user.id == @item.user_id
   end
-
 end

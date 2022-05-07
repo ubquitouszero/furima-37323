@@ -1,6 +1,6 @@
 class DeliveryInfo < ApplicationRecord
   # with_options presence: true do
-  #   validates 
+  #   validates
   #   validates    :postal_code
   #   validates    :prefecture_id
   #   validates    :city
@@ -10,5 +10,4 @@ class DeliveryInfo < ApplicationRecord
   # end
 
   belongs_to :sales_info
-
 end
