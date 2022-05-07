@@ -20,7 +20,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    redirect_to root_path unless current_user.id == @item.user_id
+    check_item_status
   end
 
   def update
@@ -52,4 +52,12 @@ class ItemsController < ApplicationController
   def set_item
     @item = Item.find(params[:id])
   end
+
+  def check_item_status
+    item_status = SalesInfo.find_by(item_id: params[:item_id])
+    if item_status != nil || current_user.id != @item.user_id
+      redirect_to root_path
+    end
+  end
+
 end
