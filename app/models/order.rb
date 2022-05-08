@@ -9,6 +9,8 @@ class Order
     validates :addresses
     validates :phone_number, format: { with: /\A[0-9]+\z/, message: 'は半角数字で入力してください。-（ハイフン）は入力できません。' }
     validates :token
+    validates :user_id
+    validates :item_id
   end
 
   def save
