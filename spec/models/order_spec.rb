@@ -64,27 +64,27 @@ RSpec.describe Order, type: :model do
       it '都道府県に「---」が選択されている場合は購入できない' do
         @order.prefecture_id = 0
         @order.valid?
-        expect(@order.errors.full_messages).to include("Prefecture は入力必須項目です。")
+        expect(@order.errors.full_messages).to include('Prefecture は入力必須項目です。')
       end
       it '電話番号が9桁以下では購入できない' do
-        @order.phone_number = 123456789
+        @order.phone_number = 123_456_789
         @order.valid?
-        expect(@order.errors.full_messages).to include("Phone number は10桁~11桁の半角数字で入力してください。-（ハイフン）は入力できません。")
+        expect(@order.errors.full_messages).to include('Phone number は10桁~11桁の半角数字で入力してください。-（ハイフン）は入力できません。')
       end
       it '電話番号が12桁以上では購入できない' do
-        @order.phone_number = 123456789012
+        @order.phone_number = 123_456_789_012
         @order.valid?
-        expect(@order.errors.full_messages).to include("Phone number は10桁~11桁の半角数字で入力してください。-（ハイフン）は入力できません。")
+        expect(@order.errors.full_messages).to include('Phone number は10桁~11桁の半角数字で入力してください。-（ハイフン）は入力できません。')
       end
       it 'userが紐付いていないと保存できないこと' do
         @order.user_id = nil
         @order.valid?
-        expect(@order.errors.full_messages).to include("User は入力必須項目です。")
+        expect(@order.errors.full_messages).to include('User は入力必須項目です。')
       end
       it 'itemが紐付いていなければ購入できない' do
         @order.item_id = nil
         @order.valid?
-        expect(@order.errors.full_messages).to include("Item は入力必須項目です。")
+        expect(@order.errors.full_messages).to include('Item は入力必須項目です。')
       end
     end
   end
