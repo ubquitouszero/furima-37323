@@ -7,7 +7,7 @@ class Order
     validates :prefecture_id, numericality: { other_than: 0, message: 'は入力必須項目です。' }
     validates :city
     validates :addresses
-    validates :phone_number, format: { with: /\A[0-9]{10,11}+\z/, message: 'は半角数字で入力してください。-（ハイフン）は入力できません。' }
+    validates :phone_number, format: { with: /\A[0-9]{10,11}+\z/, message: 'は10桁~11桁の半角数字で入力してください。-（ハイフン）は入力できません。' }
     validates :token
     validates :user_id
     validates :item_id
